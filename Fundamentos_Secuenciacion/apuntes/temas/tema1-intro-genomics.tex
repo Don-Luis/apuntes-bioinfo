@@ -552,7 +552,7 @@ Además, algunos adaptadores incluyen identificadores moleculares únicos, conoc
 \label{fig:umi-variantes}
 \end{figure}
 
-En el método conocido como \textbf{Duplex Sequencing}, se emplean UMIs distintos en ambos extremos del fragmento de ADN. De este modo, durante el análisis de consenso, se pueden identificar las posiciones que muestran concordancia entre ambas hebras y descartar los nucleótidos mutados por error (figura \ref{fig:umi-variantes}).
+En el método conocido como \textbf{Duplex Sequencing}, se emplean UMIs distintos en ambos extremos del fragmento de ADN. De este modo, durante el análisis de consenso, se pueden identificar las posiciones que muestran concordancia entre ambas hebras y descartar los nucleótidos mutados por error (figura \ref{fig:umi-variantes}). Permite bajar el error de 10^-3 (en Illumina) a 10^-7 con los dos tags, que está en el orden/dominio de error de la polimerasa.
 
 \begin{figure}[htbp]
 \centering
@@ -560,10 +560,10 @@ En el método conocido como \textbf{Duplex Sequencing}, se emplean UMIs distinto
 \caption{Visión general de la secuenciación dúplex. (a) Esquema de un adaptador de secuenciación dúplex, que muestra la etiqueta aleatoria de doble cadena y la secuencia espaciadora invariante. (b) La ligación de los adaptadores con el ADN de la muestra da lugar a una secuencia única de 12 nt en ambos extremos de la molécula. La amplificación por PCR de cada cadena de un dúplex de ADN da lugar a dos productos de PCR distintos pero relacionados. (c) Las lecturas que comparten secuencias únicas de etiquetas $\alpha$ y $\beta$ se agrupan en familias de etiquetas de forma $\alpha \beta$ o $\beta \alpha$, y se crea un SSCS (single-strand consensus sequence) para cada familia de etiquetas. Las mutaciones son de tres tipos diferentes: errores de secuenciación (puntos azules o morados); errores de PCR de primera ronda (puntos marrones); mutaciones verdaderas (puntos verdes). La formación del SSCS elimina el primer tipo de error, pero no los errores de PCR de la primera ronda. La comparación de los SSCS de las familias emparejadas con etiquetas $\alpha \beta$ y $\beta \alpha$, genera un DCS (duplex consensus sequence), que elimina estos errores de PCR de primera ronda. Las mutaciones verdaderas se puntúan si y sólo si están presentes en la misma posición en ambas cadenas del ADN. "Detecting ultralow-frequency mutations by Duplex Sequencing, Nature, 2014"}
 \end{figure}
 
-Aunque los métodos basados en UMIs son altamente eficaces para detectar variantes de muy baja frecuencia, su uso es limitado debido a su alto costo, ya que requieren múltiples lecturas de la misma secuencia para asegurar precisión.
+Aunque los métodos basados en UMIs son altamente eficaces para detectar variantes de muy baja frecuencia, su uso es limitado debido a su alto costo, ya que requieren mucho poder de secuenciación, es decir, múltiples lecturas de la misma secuencia para formar la secuencia consenso (SSCS/DCS). La secuencion es muy precisa... Pero de sólo una secuencia que, necesita una redundancia de al menos 30 veces con un UMI o 700 para duplex sequencing.
 
 \subsection{Adaptadores para secuenciación de célula única (single cell)}
-En la secuenciación de célula única (Single Cell), se emplean adaptadores y primers que contienen UMIs específicos tanto para cada célula como para cada molécula de ADN. Esto permite diferenciar si las lecturas corresponden a una célula particular y, dentro de esa célula, a una molécula específica. En Single Cell, se utiliza un enfoque de consenso: las lecturas múltiples de la misma molécula permiten generar una secuencia de consenso para mejorar la precisión de los datos.
+En la secuenciación de célula única (Single Cell), se emplean adaptadores y primers que contienen UMIs específicos tanto para cada célula como para cada molécula de ADN. Esto permite diferenciar si las lecturas corresponden a una célula particular y, dentro de esa célula, a una molécula específica. En Single Cell, se utiliza un enfoque de consenso: las lecturas múltiples de la misma molécula permiten generar una secuencia de consenso para mejorar la precisión de los datos -> tiene un papel importante para aprovechar el poder de secuenciación en la generación librerías.
 
 \begin{figure}[htbp]
 \centering
@@ -571,7 +571,7 @@ En la secuenciación de célula única (Single Cell), se emplean adaptadores y p
 \caption{Descripción esquemática de la generación de GEM (gel beads-in-emulsions) y el código de barras con el flujo de trabajo del chip GEM-X. Los GEM se generan combinando perlas de gel con código de barras, una mezcla maestra que contiene células y aceite de partición en un chip GEM-X 3' o 5'. Para lograr una resolución unicelular, las células se suministran a una dilución límite, de modo que la mayoría ($\approx$90-99\%) de los GEM generados no contienen ninguna célula, mientras que el resto contiene en gran medida una sola célula.}
 \end{figure}
 
-La construcción de librerías en Single Cell se realiza mediante chips que permiten el paso de flujo de células individuales junto con liposomas que contienen la mezcla de PCR. Cada mezcla de PCR tiene adaptadores con un barcode específico de célula, pero diferentes barcodes de molécula. Esto permite identificar y diferenciar las células individuales entre sí.
+La construcción de librerías en Single Cell se realiza mediante chips (son como una cajita) que permiten el paso de flujo con células individuales junto con una especie de liposomas que contienen la mezcla de PCR. Cada mezcla de PCR tiene adaptadores con un barcode específico de célula, pero diferentes barcodes del UMI/molécula. Esto permite identificar y diferenciar las células individuales entre sí.
 
 %Glosario
 \begin{table}[htbp]
